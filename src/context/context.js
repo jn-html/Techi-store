@@ -6,7 +6,7 @@ const ProductContext = React.createContext();
 class ProductProvider extends Component{
    render(){
       return (
-         <ProductContext.Provider value="this is from the context">
+         <ProductContext.Provider value=" this is from the context ">
          {this.props.children}
          </ProductContext.Provider>
       )   
@@ -15,4 +15,4 @@ class ProductProvider extends Component{
 
 const ProductConsumer = ProductContext.Consumer;
 
-export {ProductProvider, ProductConsumer};
+export { ProductProvider, ProductConsumer };
