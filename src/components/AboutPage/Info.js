@@ -28,7 +28,7 @@ export default function Info() {
                   <button 
                      className="main-link" 
                      type="button"
-                     style={{margintop: "2rem" }}
+                     style={{ marginTop: "2rem" }}
                      >
                         more info
                      </button>
