@@ -31,3 +31,22 @@ body {
   color: var(--mainBlack);
 }
 
+.main-link {
+  padding: 0.5rem 1rem;
+  background-color: var(--primaryColor);
+  color: var(--mainWhite);
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: var(--primaryColor);
+  outline: 2px solid var(--primaryColor);
+  outline-offset: 4px;
+  border: none;
+  transition: var(--mainTransition);
+}
+
+.main-link:hover {
+  background: var(--darkGrey);
+  text-decoration: none;
+  color: var(--primaryColor);
+  outline-color: var(--darkGrey);
+}
