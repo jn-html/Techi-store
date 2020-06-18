@@ -30,7 +30,7 @@ export default function contact() {
                <div className="form-group">
                   <input 
                      type="text"
-                     name="firstName"
+                     name="subject"
                      className="form-control"
                      placeholder="object"
                   />
