@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { linkData } from "./linkData";
 import { socialData } from './socialData';
+import { items } from './productData';
 
 const ProductContext = React.createContext();
 //Provider
@@ -9,10 +10,20 @@ class ProductProvider extends Component {
   state = {
     sidebarOpen: false,
     cartOpen: false,
-    cartItems: 2,
+    // cartItems: 2,
     links: linkData,
     socialIcons: socialData,
-    cart: []
+    cart: [],
+    cartItems: 0,
+    cartSubTotal: 0,
+    cartTax:0,
+    carTotal: 0,
+    storeProducts: [],
+    filteredProducts: [],
+    featuredProducts: [],
+    singleProducts: {},
+    loading: true
+
   };
   // handle sidebar
   handleSidebar = () => {
