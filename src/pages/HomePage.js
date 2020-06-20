@@ -11,7 +11,7 @@ export default function HomePage() {
          <Hero title="awesome Gadgets" max="true">
             <Link to='/products' className="main-link" style={{margin:'2rem'}}>our products</Link>
          </Hero>
-         <Services/>
+         <Services />
          <Featured />
       </ >
    );
