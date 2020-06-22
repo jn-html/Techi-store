@@ -50,7 +50,11 @@ class ProductProvider extends Component {
     cart: this.getStorageCart(),
     singleProduct: this.getStorageProduct(),
     loading: false
-  });
+  },
+    () => {
+      this.addTotals();
+    }
+  );
 };
 
   // get cart from local storage
@@ -62,12 +66,41 @@ class ProductProvider extends Component {
     return []
   };
   // get totals
-  getTotals = () => {};
+  getTotals = () => {
+    let subTotal = 0;
+    let cartItems = 0;
+    this.state.cart.forEach(item => {
+      subTotal += item.total;
+      cartItems += item.count;
+    });
+    subTotal = parseFloat(subTotal.toFixed(2));
+    let tax = subTotal * 0.2;
+    tax = parseFloat(tax.toFixed(2));
+    let total = subTotal + tax;
+    total = parseFloat(total.toFixed(2));
+    return {
+      // cartItems : cartItems
+      cartItems,
+      subTotal,
+      tax,
+      total
+    };
+  };
+
   // add totals
-  addTotals = () => {};
+  addTotals = () => {
+    const totals = this.getTotals();
+    this.setState({
+      cartItems: totals.cartItems,
+      cartSubTotal: totals.subTotal,
+      cartTax: totals.tax,
+      cartTotal: totals.total
+    });
+  };
+
   //  sync storage
   syncStorage = () => {};
-  
+
   //  add to cart
   addToCart = id => {
     // console.log(`add to cart ${id}`);
