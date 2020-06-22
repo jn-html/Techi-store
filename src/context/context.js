@@ -42,6 +42,7 @@ class ProductProvider extends Component {
     // featured products
     let featuredProducts = storeProducts.filter(item => item.featured === true);
     this.setState({
+    // ES5 
     // storeProducts : storeProducts
     // ES6
     storeProducts,
@@ -59,12 +60,21 @@ class ProductProvider extends Component {
 
   // get cart from local storage
   getStorageCart = () => {
-    return []
+    let cart;
+    if(localStorage.getItem('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart'))
+    }
+    else {
+      cart = [];
+    }
+    return cart;
   };
+
   // get product from local storage
   getStorageProduct = () => {
     return []
   };
+
   // get totals
   getTotals = () => {
     let subTotal = 0;
@@ -99,7 +109,9 @@ class ProductProvider extends Component {
   };
 
   //  sync storage
-  syncStorage = () => {};
+  syncStorage = () => {
+    localStorage.setItem('cart', JSON.stringify(this.state.cart));
+  };
 
   //  add to cart
   addToCart = id => {
