@@ -67,10 +67,44 @@ class ProductProvider extends Component {
   addTotals = () => {};
   //  sync storage
   syncStorage = () => {};
+  
   //  add to cart
-  addToCart = (id) => {
-    console.log(`add to cart ${id}`);
+  addToCart = id => {
+    // console.log(`add to cart ${id}`);
+    let tempCart = [...this.state.cart];
+    let tempProducts = [...this.state.storeProducts];
+    // filter throuw the tempCart if item have the id that match the passed id
+    let tempItem = tempCart.find(item => item.id === id);
+    // if item NOT already in the cart
+    if (!tempItem) {
+      // find the item in the products
+      tempItem = tempProducts.find(item => item.id === id );
+      // total match the (the 1st) price 
+      let total = tempItem.price;
+      // add 1 item to the cart -> get all the props + a count +total
+      let cartItem = {...tempItem, count:1, total};
+      // get the item u currently have and add the new one
+      tempCart = [...tempCart, cartItem]
+    } 
+    // if item already in the cart
+    else {
+      // if item in already in cart just add 1
+      tempItem.count++;
+      // multiply price per the amount of items(same)
+      tempItem.total = tempItem.price * tempItem.count;
+      // set fix value 2 number behind comma (for the price)
+      tempItem.total = parseFloat(tempItem.total.toFixed(2));
+    }
+    // 
+    this.setState(()=>{
+      return {cart:tempCart}
+    }, ()=> {
+      this.addTotals()
+      this.syncStorage()
+      this.openCart()
+    })
   };
+
   //  set single product
   setSingleProduct = (id) => {
     console.log(`set single product ${id}`);
@@ -101,6 +135,7 @@ class ProductProvider extends Component {
           handleCart: this.handleCart,
           closeCart: this.closeCart,
           openCart: this.openCart,
+          addToCart: this.addToCart,
           setSingleProduct : this.setSingleProduct
         }}
       >

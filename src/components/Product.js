@@ -26,10 +26,7 @@ export default function Product({ product }) {
                   >
                     <FaSearch className="icon" />
                   </Link>
-                  <FaCartPlus
-                    className="icon"
-                    onClick={() => addToCart(product.id)}
-                  />
+                  <FaCartPlus className="icon" onClick={()=>addToCart(product.id)} />
                 </div>
               </div>
               <div className="card-body d-flex justify-content-between">
