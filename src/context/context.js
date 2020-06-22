@@ -22,7 +22,7 @@ class ProductProvider extends Component {
     filteredProducts: [],
     featuredProducts: [],
     singleProducts: {},
-    loading: false
+    loading: true
   };
 
   componentDidMount () {
@@ -72,7 +72,9 @@ class ProductProvider extends Component {
 
   // get product from local storage
   getStorageProduct = () => {
-    return []
+    return localStorage.getItem('singleProduct') 
+      ? JSON.parse(localStorage.getItem('singleProduct'))
+      :{};
   };
 
   // get totals
@@ -137,7 +139,7 @@ class ProductProvider extends Component {
       tempItem.count++;
       // multiply price per the amount of items(same)
       tempItem.total = tempItem.price * tempItem.count;
-      // set fix value 2 number behind comma (for the price)
+      // set fix value, 2 number behind comma (for the price)
       tempItem.total = parseFloat(tempItem.total.toFixed(2));
     }
     // 
@@ -152,7 +154,12 @@ class ProductProvider extends Component {
 
   //  set single product
   setSingleProduct = (id) => {
-    console.log(`set single product ${id}`);
+    let product = this.state.storeProducts.find( item => item.id === id);
+    localStorage.setItem('singleProduct', JSON.stringify(product));
+    this.setState({
+      singleProduct: {...product },
+      loading: false
+    });
   }
 
   // handle sidebar
