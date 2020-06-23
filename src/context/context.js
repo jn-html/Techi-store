@@ -119,7 +119,7 @@ class ProductProvider extends Component {
     // console.log(`add to cart ${id}`);
     let tempCart = [...this.state.cart];
     let tempProducts = [...this.state.storeProducts];
-    // filter throuw the tempCart if item have the id that match the passed id
+    // filter throw the tempCart if item have the id that match the passed id
     let tempItem = tempCart.find(item => item.id === id);
     // if item NOT already in the cart
     if (!tempItem) {

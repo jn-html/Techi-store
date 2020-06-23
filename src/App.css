@@ -37,7 +37,7 @@ body {
   color: var(--mainWhite);
   display: inline-block;
   text-transform: uppercase;
-  letter-spacing: var(--primaryColor);
+  letter-spacing: var(--mainSpacing);
   outline: 2px solid var(--primaryColor);
   outline-offset: 4px;
   border: none;
