@@ -28,9 +28,8 @@ export default function CartList() {
                                  increment={increment}
                                  decrement={decrement}
                                  removeItem={removeItem}
-                              >
-
-                           </CartItem>))}
+                              />
+                           ))}
                         </>
                      )
                   }
