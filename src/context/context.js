@@ -9,7 +9,7 @@ const ProductContext = React.createContext();
 class ProductProvider extends Component {
   state = {
     sidebarOpen: false,
-    cartOpen: false,
+    cartOpen: true,
     links: linkData,
     socialIcons: socialData,
     cart: [],
@@ -61,7 +61,7 @@ class ProductProvider extends Component {
   getStorageCart = () => {
     let cart;
     if(localStorage.getItem('cart')) {
-      cart = JSON.parse(localStorage.getItem('cart'))
+      cart = JSON.parse(localStorage.getItem('cart'));
     }
     else {
       cart = [];
@@ -167,7 +167,7 @@ class ProductProvider extends Component {
   };
   // hanldle sart
   handleCart = () => {
-    this.setState({ cartOpen: !this.state.sidebarOpen });
+    this.setState({ cartOpen: !this.state.cartOpen });
   };
   //close cart
   closeCart = () => {
