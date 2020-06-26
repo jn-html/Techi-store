@@ -1,15 +1,7 @@
-import React, {
-  Component
-} from "react";
-import {
-  linkData
-} from "./linkData";
-import {
-  socialData
-} from './socialData';
-import {
-  items
-} from './productData';
+import React, { Component } from "react";
+import { linkData } from "./linkData";
+import { socialData } from './socialData';
+import { items} from './productData';
 
 const ProductContext = React.createContext();
 //Provider
@@ -298,13 +290,24 @@ class ProductProvider extends Component {
   // handle filtering
   // look for event to check (typing, box selectBox etc...)
   handleChange = (event) => {
-    console.log(event)
-  }
+    const name = event.target.name;
+    const value = 
+    // if checked  instead of valu get target cheked
+      event.target.type === 'checkbox'
+        ? event.target.checked
+        : event.target.value;
+        // console.log(`Ǹame : ${name}, value ${value}`);
+        this.setState ({
+          [name]:value
+      },
+      this.sortData 
+    );
+  };
 
   // sort data
   // 
   sortData = () => {
-
+    console.log('sorting data...')
   }
 
   render() {
