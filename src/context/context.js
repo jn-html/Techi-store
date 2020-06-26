@@ -231,8 +231,31 @@ class ProductProvider extends Component {
   };
   // decrement
   decrement = (id) => {
-    console.log(id);
-  }
+    let tempCart = [...this.state.cart];
+    const cartItem = tempCart.find(item => item.id === id);
+
+    cartItem.count = cartItem.count-1;
+    if (cartItem.count === 0){
+      this.removeItem(id)
+    }
+    else {
+      cartItem.total = cartItem.count * cartItem.price;
+      // toFixed return a string, use parseFloat de get a number
+      cartItem.total = parseFloat(cartItem.total.toFixed(2));
+      this.setState(
+        () => {
+          return {
+            cart: [...tempCart]
+          };
+        },
+        () => {
+          this.addTotals();
+          this.syncStorage();
+        }
+      );
+    }
+  };
+
   // remove item
   removeItem = (id) => {
     let tempCart = [...this.state.cart];
@@ -251,8 +274,14 @@ class ProductProvider extends Component {
   }
   // clear cart
   clearCart = () => {
-    console.log("awesome cart cleared");
-  }
+    this.setState({
+      cart: []
+    },
+    ()=> {
+      this.addTotals()
+      this.syncStorage()
+    })
+  };
 
 
   render() {
