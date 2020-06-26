@@ -235,7 +235,19 @@ class ProductProvider extends Component {
   }
   // remove item
   removeItem = (id) => {
-    console.log(id);
+    let tempCart = [...this.state.cart];
+    //filter -> return only item that don't have the id
+    tempCart = tempCart.filter(item => item.id !== id)
+    this.setState({
+      cart: [...tempCart]
+    },
+    // to update the cart
+    ()=> {
+      this.addTotals();
+      this.syncStorage();
+    }
+  );
+    // console.log(id);
   }
   // clear cart
   clearCart = () => {
@@ -262,8 +274,8 @@ class ProductProvider extends Component {
       } >
       {
         this.props.children
-      } <
-      /ProductContext.Provider>
+      } 
+      </ProductContext.Provider>
     );
   }
 }
