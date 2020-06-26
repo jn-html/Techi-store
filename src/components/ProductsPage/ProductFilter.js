@@ -16,6 +16,7 @@ export default function ProductFilter() {
           storeProducts
         } = value;
 
+        {/*  get rid of name repeat in company */}
         let companies = new Set();
         companies.add("all");
         for (let product in storeProducts) {
@@ -53,6 +54,9 @@ export default function ProductFilter() {
                     {/* <option value="all">all</option>
                     <option value="fuji">fuji</option>
                     <option value="htc">htc</option> */}
+                    
+                    {/* gets all the company of product available to display it
+                     in the select boxes */}
                     {companies.map((company, index) => {
                       return (
                         <option key={index} value={company}>
