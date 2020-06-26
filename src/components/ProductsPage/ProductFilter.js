@@ -1,22 +1,29 @@
-import React from 'react';
-import styled from 'styled-components';
-import { ProductConsumer } from '../../context'
-
+import React from "react";
+import styled from "styled-components";
+import { ProductConsumer } from "../../context";
 export default function ProductFilter() {
-   return (
-      <ProductConsumer>
-         {value => {
-            const {
-               search,
-               min,
-               max,
-               company,
-               price,
-               shipping,
-               handleChange,
-               storeProducts
-            } = value;
-            return (
+  return (
+    <ProductConsumer>
+      {value => {
+        const {
+          search,
+          min,
+          max,
+          company,
+          price,
+          shipping,
+          handleChange,
+          storeProducts
+        } = value;
+
+        let companies = new Set();
+        companies.add("all");
+        for (let product in storeProducts) {
+          companies.add(storeProducts[product]["company"]);
+        }
+        companies = [...companies];
+
+        return (
           <div className="row my-5">
             <div className="col-10 mx-auto">
               <FilterWrapper>
@@ -43,9 +50,16 @@ export default function ProductFilter() {
                     value={company}
                     className="filter-item"
                   >
-                    <option value="all">all</option>
+                    {/* <option value="all">all</option>
                     <option value="fuji">fuji</option>
-                    <option value="htc">htc</option>
+                    <option value="htc">htc</option> */}
+                    {companies.map((company, index) => {
+                      return (
+                        <option key={index} value={company}>
+                          {company}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
                 {/* end of category search */}
@@ -78,7 +92,7 @@ export default function ProductFilter() {
                     name="shipping"
                     id="shipping"
                     onChange={handleChange}
-                    value={shipping && true}
+                    checked={shipping && true}
                   />
                 </div>
 
