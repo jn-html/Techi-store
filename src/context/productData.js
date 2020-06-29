@@ -3,12 +3,13 @@ export const items = [
     sys: { id: 0 },
     fields: {
       title: "google pixel - black",
-      price: 10,
+      price: 400,
       company: "google",
       description:
         "Shaman hexagon fam activated charcoal literally cardigan. Pitchfork YOLO man bun hella. Trust fund vexillologist squid put a bird on it man braid, selvage pug. Schlitz kombucha chillwave pug shabby chic cornhole. Try-hard four loko listicle yuccie kitsch small batch narwhal celiac selfies distillery cloud bread farm-to-table art party leggings glossier.",
       featured: true,
-      image: { fields: { file: { url: "img/product-0.png" } } }
+      image: { fields: { file: { url: "img/product-0.png" } } },
+      freeShipping: true
     }
   },
   {
