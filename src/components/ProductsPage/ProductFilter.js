@@ -16,7 +16,7 @@ export default function ProductFilter() {
           storeProducts
         } = value;
 
-        {/*  get rid of name repeat in company */}
+        //get rid of name repeat in company
         let companies = new Set();
         companies.add("all");
         for (let product in storeProducts) {
